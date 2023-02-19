@@ -163,6 +163,8 @@ jobs:
       working-directory: ${{ steps.pwd.outputs.pwd }}
 
     - name: Upload to Release
+permissions:
+  contents: write
       uses: softprops/action-gh-release@v1
       with:
         files: workspace/out/target/product/${{ github.event.inputs.DEVICE_NAME }}/${{ github.event.inputs.BUILD_TARGET }}.img
