@@ -43,6 +43,8 @@ on:
         default: 'recovery'
 
 jobs:
+  permissions:
+    contents: write
   build:
     if: github.event.repository.owner.id == github.event.sender.id
     runs-on: ubuntu-18.04
@@ -163,8 +165,6 @@ jobs:
       working-directory: ${{ steps.pwd.outputs.pwd }}
 
     - name: Upload to Release
-permissions:
-  contents: write
       uses: softprops/action-gh-release@v1
       with:
         files: workspace/out/target/product/${{ github.event.inputs.DEVICE_NAME }}/${{ github.event.inputs.BUILD_TARGET }}.img
